@@ -1,15 +1,18 @@
-import 'package:clock_of_clocks_website/app/routes.dart';
-
-import 'screens/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'screens/home_screen/home_screen.dart';
 import 'screens/launch_screen/launch_screen.dart';
+import 'g_styles/colors.dart';
+import 'g_styles/theme_data.dart';
+import 'routes.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: appTheme(context),
       title: 'Clock Of Clocks',
+      color: themeBasedColor(context, PaletteColor.primaryColor),
       initialRoute: launchScreenRoute,
       routes: {
         '/': (_) => LaunchScreen(),
