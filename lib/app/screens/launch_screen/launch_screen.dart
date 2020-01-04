@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../routes.dart' show homeScreenRoute;
-import 'containers/animated_clock_mesh.dart';
-import 'containers/brand_introduction.dart';
+import 'containers/animated_clock_mesh/animated_clock_mesh.dart';
+import 'containers/brand_introduction/brand_introduction.dart';
 
 class LaunchScreen extends StatefulWidget {
   @override

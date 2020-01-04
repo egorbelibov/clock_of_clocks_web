@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import 'animated_analog_clock.dart';
+import 'containers/animated_analog_clock.dart';
 
 class AnimatedClockMesh extends StatefulWidget {
   @override
