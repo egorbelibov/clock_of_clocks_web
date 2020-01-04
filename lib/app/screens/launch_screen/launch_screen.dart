@@ -11,12 +11,17 @@ class LaunchScreen extends StatefulWidget {
 
 class _LaunchScreenState extends State<LaunchScreen> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
     Future.delayed(Duration(milliseconds: 5000), () {
       Navigator.of(context).popAndPushNamed(homeScreenRoute);
       // Call dispose (cause pop() never calls it...)
       super.dispose();
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
