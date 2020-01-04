@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 
-import '../../../g_styles/colors.dart';
-import '../../../g_styles/gradients.dart';
-import '../components/clock_hand.dart';
+import '../../../../../g_styles/colors.dart';
+import '../../../../../g_styles/gradients.dart';
+import 'components/clock_hand/clock_hand.dart';
 
 /// Simple Analog Clock that repeatingly animates all of its hands.
 class AnimatedAnalogClock extends StatelessWidget {
