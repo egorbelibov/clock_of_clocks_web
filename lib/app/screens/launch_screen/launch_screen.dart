@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../routes.dart' show homeScreenRoute;
 import 'containers/animated_clock_mesh.dart';
+import 'containers/brand_introduction.dart';
 
 class LaunchScreen extends StatefulWidget {
   @override
@@ -18,7 +19,13 @@ class _LaunchScreenState extends State<LaunchScreen> {
     });
     return Scaffold(
       body: Center(
-        child: AnimatedClockMesh(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            AnimatedClockMesh(),
+            BrandIntroduction(),
+          ],
+        ),
       ),
     );
   }

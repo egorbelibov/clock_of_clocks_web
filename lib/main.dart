@@ -1,13 +1,24 @@
+import 'dart:io' show Platform;
+
+import 'package:flutter/foundation.dart'
+    show kIsWeb, debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
 
 import 'app/app.dart';
 
 void main() {
-  /// Workaround to have crisp text...
-  /// 
-  /// Tested on **Beta** Channel. 
-  /// Right now it's not working since there's an issue (https://github.com/flutter/flutter/issues/47041). 
-  /// Seems like whenever it's enabled it doesn't display text... 🧐
-  // bool.fromEnvironment('FLUTTER_WEB_USE_SKIA', defaultValue: true);
+  _setOverrideForDesktop();
   runApp(App());
+}
+
+void _setOverrideForDesktop() {
+  if (kIsWeb) return;
+
+  if (Platform.isMacOS) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+  } else if (Platform.isLinux || Platform.isWindows) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+  } else if (Platform.isFuchsia) {
+    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  }
 }
