@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 TextStyle titleTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 24,
+    fontSize: 25,
     fontWeight: FontWeight.w900,
     color: themeBasedColor(context, PaletteColor.primaryColor),
   );
@@ -20,7 +20,7 @@ TextStyle highlightedTextStyle(BuildContext context) {
 TextStyle subTitleTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
-    fontSize: 18,
+    fontSize: 18.5,
     fontWeight: FontWeight.w100,
     color: themeBasedColor(context, PaletteColor.primaryColor),
   );
