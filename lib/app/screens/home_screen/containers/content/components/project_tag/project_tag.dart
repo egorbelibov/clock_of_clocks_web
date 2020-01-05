@@ -50,8 +50,8 @@ Widget tagText(BuildContext context) {
 }
 
 Widget tagDecoration(BuildContext context) {
-  const double containerWidth = 10;
-  const double containerHeight = 35;
+  const double containerWidth = 8;
+  const double containerHeight = 30;
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
