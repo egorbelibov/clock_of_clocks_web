@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'containers/content/content.dart';
 import 'containers/footer/footer.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,14 +13,7 @@ class HomeScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Text('TODO: Add stuff here :)')
-                ],
-              ),
-            ),
+            Content(), 
             Footer(),
           ],
         ),

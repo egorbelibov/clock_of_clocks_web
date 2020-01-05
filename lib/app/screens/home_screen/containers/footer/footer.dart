@@ -9,7 +9,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 24, horizontal: 45),
+      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 45),
       color: themeBasedColor(context, PaletteColor.footerColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
