@@ -1,0 +1,1 @@
+const desktopMinWidth = 1400; 
