@@ -1,7 +1,8 @@
-import 'package:clock_of_clocks_website/app/g_styles/colors.dart';
 import 'package:flutter/widgets.dart';
 
-TextStyle getDefaultTextStyle(BuildContext context) {
+import '../../../../g_styles/colors.dart';
+
+TextStyle defaultTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
     fontSize: 18,
@@ -10,7 +11,8 @@ TextStyle getDefaultTextStyle(BuildContext context) {
   );
 }
 
-TextStyle getRemarkedTextStyle(BuildContext context) {
+
+TextStyle remarkedTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
     fontSize: 18,
