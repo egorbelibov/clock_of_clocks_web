@@ -1,3 +1,4 @@
+import 'package:clock_of_clocks_website/app/g_styles/spaces.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../g_helpers/links.dart';
@@ -9,7 +10,7 @@ class Footer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 45),
+      padding: EdgeInsets.symmetric(vertical: topScreenPadding, horizontal: rightScreenPadding),
       color: themeBasedColor(context, PaletteColor.footerColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

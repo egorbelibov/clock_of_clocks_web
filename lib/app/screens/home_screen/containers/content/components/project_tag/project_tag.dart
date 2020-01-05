@@ -1,7 +1,8 @@
-import 'package:clock_of_clocks_website/app/g_styles/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../g_helpers/links.dart';
+import '../../../../../../g_styles/colors.dart';
+import '../../../../../../g_styles/spaces.dart';
 import '../../../../../../g_wrapper/custom_cursor.dart';
 import 'styles.dart';
 
@@ -9,8 +10,8 @@ class ProjectTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 25,
-      right: 45,
+      top: topScreenPadding,
+      right: rightScreenPadding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

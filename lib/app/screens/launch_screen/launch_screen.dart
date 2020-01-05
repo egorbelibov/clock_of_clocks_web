@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../routes.dart' show homeScreenRoute;
 import 'containers/animated_clock_mesh/animated_clock_mesh.dart';
-import 'containers/brand_introduction/brand_introduction.dart';
+import 'containers/project_info/project_info.dart';
 
 class LaunchScreen extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             AnimatedClockMesh(),
-            BrandIntroduction(),
+            ProjectInfo(),
           ],
         ),
       ),
