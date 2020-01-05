@@ -2,7 +2,6 @@ import 'package:clock_of_clocks_website/app/g_styles/colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../g_helpers/links.dart';
-import '../../../../../../g_styles/text_styles.dart';
 import '../../../../../../g_wrapper/custom_cursor.dart';
 import 'styles.dart';
 
