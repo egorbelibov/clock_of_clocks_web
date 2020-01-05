@@ -19,14 +19,12 @@ class BrandIntroduction extends StatelessWidget {
   }
 
   Widget _renderTitle(BuildContext context) {
-    final titleTextStyle = getTitleTextStyle(context);
-    final titleHighlightStyle = getHighlightedTextStyle(context);
     return CustomCursor(
       cursorStyle: CustomCursor.pointer,
       child: RichText(
-        text: TextSpan(style: titleTextStyle, children: [
+        text: TextSpan(style: titleTextStyle(context), children: [
           TextSpan(text: 'CLOCK'),
-          TextSpan(text: 'OF', style: titleHighlightStyle),
+          TextSpan(text: 'OF', style: highlightedTextStyle(context)),
           TextSpan(text: 'CLOCKS'),
         ]),
       ),
@@ -34,11 +32,10 @@ class BrandIntroduction extends StatelessWidget {
   }
 
   Widget _renderSubTitle(BuildContext context) {
-    final subTitleTextStyle = getSubTitleTextStyle(context);
     return CustomCursor(
       cursorStyle: CustomCursor.text,
       child: RichText(
-        text: TextSpan(style: subTitleTextStyle, children: [
+        text: TextSpan(style: subTitleTextStyle(context), children: [
           TextSpan(text: 'A Digital Clock made of Analog Clocks'),
         ]),
       ),

@@ -29,7 +29,7 @@ class Footer extends StatelessWidget {
           cursorStyle: CustomCursor.text,
           child: SelectableText(
             'Designed & Developed by',
-            style: getDefaultTextStyle(context),
+            style: defaultTextStyle(context),
           ),
         ),
         CustomCursor(
@@ -38,7 +38,7 @@ class Footer extends StatelessWidget {
             onTap: () => openWebUrl('https://twitter.com/egorbelibov'),
             child: Text(
               'Egor Belibov',
-              style: getRemarkedTextStyle(context),
+              style: remarkedTextStyle(context),
             ),
           ),
         ),
@@ -54,7 +54,7 @@ class Footer extends StatelessWidget {
           cursorStyle: CustomCursor.text,
           child: SelectableText(
             'Project Source Code',
-            style: getRemarkedTextStyle(context),
+            style: remarkedTextStyle(context),
           ),
         ),
         CustomCursor(
@@ -65,7 +65,7 @@ class Footer extends StatelessWidget {
             },
             child: Text(
               'github.com/egorbelibov/clock_of_clocks',
-              style: getDefaultTextStyle(context),
+              style: defaultTextStyle(context),
             ),
           ),
         ),

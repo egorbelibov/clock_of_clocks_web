@@ -1,7 +1,7 @@
 import 'package:clock_of_clocks_website/app/g_styles/colors.dart';
 import 'package:flutter/widgets.dart';
 
-TextStyle getTitleTextStyle(BuildContext context) {
+TextStyle titleTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
     fontSize: 24,
@@ -10,14 +10,14 @@ TextStyle getTitleTextStyle(BuildContext context) {
   );
 }
 
-TextStyle getHighlightedTextStyle(BuildContext context) {
+TextStyle highlightedTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
     color: themeBasedColor(context, PaletteColor.tertiaryColor),
   );
 }
 
-TextStyle getSubTitleTextStyle(BuildContext context) {
+TextStyle subTitleTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: 'Roboto',
     fontSize: 18,
