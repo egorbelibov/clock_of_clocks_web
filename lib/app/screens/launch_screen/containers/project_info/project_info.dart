@@ -4,7 +4,7 @@ import '../../../../g_wrapper/custom_cursor.dart';
 import 'styles.dart';
 
 /// A Container with a Title and Sub Title.
-class BrandIntroduction extends StatelessWidget {
+class ProjectInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
