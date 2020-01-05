@@ -4,14 +4,14 @@ import '../../../../../g_helpers/links.dart';
 import '../../../../../g_styles/colors.dart';
 import '../../../../../g_styles/spaces.dart';
 import '../../../../../g_wrapper/custom_cursor.dart';
-import '../styles.dart';
+import 'styles.dart';
 
 class MobileFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: topScreenPadding,
+        vertical: 20,
         horizontal: rightScreenPadding,
       ),
       color: themeBasedColor(context, PaletteColor.footerColor),
