@@ -6,7 +6,7 @@ import '../../../../g_styles/fonts.dart';
 TextStyle titleTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: defaultFontFamily,
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: FontWeight.w900,
     color: themeBasedColor(context, PaletteColor.primaryColor),
   );
@@ -22,7 +22,7 @@ TextStyle highlightedTextStyle(BuildContext context) {
 TextStyle subTitleTextStyle(BuildContext context) {
   return TextStyle(
     fontFamily: defaultFontFamily,
-    fontSize: 18.5,
+    fontSize: 18,
     fontWeight: FontWeight.w100,
     color: themeBasedColor(context, PaletteColor.primaryColor),
   );
