@@ -9,6 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  property_change_notifier: ^0.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../g_helpers/device_type.dart';
-import '../../../../../../g_styles/sizes.dart';
+import '../../../../../../g_models/device_type.dart';
+import '../../../../../../g_state/device.dart' show subscribeToDeviceType;
 import 'components/action_button/action_button.dart';
 import 'components/project_sub_title/project_sub_title.dart';
 import 'components/project_title/project_title.dart';
@@ -18,18 +18,21 @@ class _ProjectInfoState extends State<ProjectInfo> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, constraints) {
-      if (constraints.maxWidth > desktopMinWidth) {
+    final DeviceType deviceType = subscribeToDeviceType(context);
+    switch (deviceType) {
+      case DeviceType.desktop:
         desktopProjectInfo ??= _renderProjectInfo(DeviceType.desktop);
         return desktopProjectInfo;
-      } else if (constraints.maxWidth > mobileMinWidth) {
+      case DeviceType.mobile:
         mobileProjectInfo ??= _renderProjectInfo(DeviceType.mobile);
         return mobileProjectInfo;
-      } else {
+      case DeviceType.mobileMini:
         mobileMiniProjectInfo ??= _renderProjectInfo(DeviceType.mobileMini);
         return mobileMiniProjectInfo;
-      }
-    });
+      default:
+        assert(true); // Should never get into default.
+        return null;
+    }
   }
 
   Widget _renderProjectInfo(DeviceType deviceType) {

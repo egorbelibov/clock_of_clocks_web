@@ -1,8 +1,8 @@
-import 'package:clock_of_clocks_website/app/g_styles/sizes.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../g_helpers/device_type.dart';
 import '../../../../../../g_helpers/links.dart';
+import '../../../../../../g_models/device_type.dart';
+import '../../../../../../g_state/device.dart' show subscribeToDeviceType;
 import '../../../../../../g_styles/colors.dart';
 import '../../../../../../g_styles/spaces.dart';
 import '../../../../../../g_wrapper/custom_cursor.dart';
@@ -21,18 +21,18 @@ class _ProjectTagState extends State<ProjectTag> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, constraints) {
-      if (constraints.maxWidth > desktopMinWidth) {
-        deviceType = DeviceType.desktop;
+    deviceType = subscribeToDeviceType(context);
+    switch (deviceType) {
+      case DeviceType.desktop:
         return desktopProjectTag ??= _renderProjectTag();
-      } else if (constraints.maxWidth > mobileMinWidth) {
-        deviceType = DeviceType.mobile;
+      case DeviceType.mobile:
         return mobileProjectTag ??= _renderProjectTag();
-      } else {
-        deviceType = DeviceType.mobileMini;
-        return mobileMiniProjectTag ??= _renderProjectTag(); 
-      }
-    });
+      case DeviceType.mobileMini:
+        return mobileMiniProjectTag ??= _renderProjectTag();
+      default:
+        assert(true); // Should never get into default.
+        return null;
+    }
   }
 
   Widget _renderProjectTag() {

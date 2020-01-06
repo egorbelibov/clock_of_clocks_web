@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../../g_helpers/device_type.dart';
+import '../../../../../../../../g_models/device_type.dart';
 import '../../../../../../../../g_styles/fonts.dart';
 
 TextStyle buttonTextStyle(BuildContext context, DeviceType deviceType) {

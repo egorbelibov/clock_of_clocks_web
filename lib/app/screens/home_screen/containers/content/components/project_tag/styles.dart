@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../../../../g_helpers/device_type.dart';
+import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_styles/colors.dart';
 import '../../../../../../g_styles/fonts.dart';
 
@@ -10,13 +10,13 @@ TextStyle defaultTextStyle(BuildContext context, DeviceType deviceType) {
 
   switch (deviceType) {
     case DeviceType.desktop:
+    case DeviceType.mobile:
       return TextStyle(
         fontFamily: defaultFontFamily,
         fontSize: 14,
         fontWeight: FontWeight.w100,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );
-    case DeviceType.mobile:
     case DeviceType.mobileMini:
       return TextStyle(
         fontFamily: defaultFontFamily,
