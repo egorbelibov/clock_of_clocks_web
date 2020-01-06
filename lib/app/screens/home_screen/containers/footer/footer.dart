@@ -1,7 +1,7 @@
-import 'package:clock_of_clocks_website/app/g_helpers/device_type.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../g_styles/sizes.dart';
+import '../../../../g_models/device_type.dart';
+import '../../../../g_state/device.dart' show subscribeToDeviceType;
 import 'desktop/desktop_footer.dart';
 import 'mobile/mobile_footer.dart';
 
@@ -17,17 +17,20 @@ class _FooterState extends State<Footer> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, constraints) {
-      if (constraints.maxWidth > desktopMinWidth) {
+    final DeviceType deviceType = subscribeToDeviceType(context);
+    switch (deviceType) {
+      case DeviceType.desktop:
         desktopFooter ??= DesktopFooter(deviceType: DeviceType.desktop);
         return desktopFooter;
-      } else if (constraints.maxWidth > mobileMinWidth) {
+      case DeviceType.mobile:
         mobileFooter ??= MobileFooter(deviceType: DeviceType.mobile);
         return mobileFooter;
-      } else {
+      case DeviceType.mobileMini:
         mobileMiniFooter ??= MobileFooter(deviceType: DeviceType.mobileMini);
         return mobileMiniFooter;
-      }
-    });
+      default:
+        assert(true); // Should never get into default.
+        return null;
+    }
   }
 }

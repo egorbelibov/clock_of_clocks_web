@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../../../../../../g_components/core_button.dart';
-import '../../../../../../../../g_helpers/device_type.dart';
 import '../../../../../../../../g_helpers/links.dart';
+import '../../../../../../../../g_models/device_type.dart';
 import '../../../../../../../../g_styles/colors.dart';
 import '../../../../../../../../g_wrapper/custom_cursor.dart';
 import 'styles.dart';
