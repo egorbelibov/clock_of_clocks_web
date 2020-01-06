@@ -1,77 +1,75 @@
-import 'package:clock_of_clocks_website/app/g_helpers/links.dart';
-import 'package:clock_of_clocks_website/app/g_styles/spaces.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../g_wrapper/custom_cursor.dart';
+import '../../../../../../g_helpers/device_type.dart';
+import '../../../../../../g_styles/sizes.dart';
 import 'components/action_button/action_button.dart';
-import 'styles.dart';
+import 'components/project_sub_title/project_sub_title.dart';
+import 'components/project_title/project_title.dart';
 
-class ProjectInfo extends StatelessWidget {
+class ProjectInfo extends StatefulWidget {
+  @override
+  _ProjectInfoState createState() => _ProjectInfoState();
+}
+
+class _ProjectInfoState extends State<ProjectInfo> {
+  Widget desktopProjectInfo;
+  Widget mobileProjectInfo;
+  Widget mobileMiniProjectInfo;
+
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 90,
-      right: 0,
-      child: Container(
-        height: 900,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            _defaultPadding(context, _renderSubTitle),
-            _defaultPadding(context, _renderTitle),
-            ActionButton('Project Source Code'),
-          ],
-        ),
-      ),
-    );
+    return LayoutBuilder(builder: (_, constraints) {
+      if (constraints.maxWidth > desktopMinWidth) {
+        desktopProjectInfo ??= _renderProjectInfo(DeviceType.desktop);
+        return desktopProjectInfo;
+      } else if (constraints.maxWidth > mobileMinWidth) {
+        mobileProjectInfo ??= _renderProjectInfo(DeviceType.mobile);
+        return mobileProjectInfo;
+      } else {
+        mobileMiniProjectInfo ??= _renderProjectInfo(DeviceType.mobileMini);
+        return mobileMiniProjectInfo;
+      }
+    });
   }
 
-  Widget _defaultPadding(BuildContext context, Function childToRender) {
-    return Padding(
-      padding: const EdgeInsets.only(right: rightScreenPadding),
-      child: childToRender(context),
-    );
-  }
-
-  Widget _renderSubTitle(BuildContext context) {
-    return Row(
+  Widget _renderProjectInfo(DeviceType deviceType) {
+    return Stack(
       children: [
-        CustomCursor(
-          cursorStyle: CustomCursor.text,
-          child: SelectableText(
-            'Designed & Developed for ',
-            style: subTitleTextStyle(context),
-          ),
-        ),
-        CustomCursor(
-          cursorStyle: CustomCursor.pointer,
-          child: GestureDetector(
-            onTap: () => openWebUrl('https://www.lenovo.com/us/en/smart-clock'),
-            child: Text(
-              'Lenovo Smart Clock',
-              style: subTitleRemarkedTextStyle(context),
-            ),
+        _deviceTypeBasedPositioned(
+          deviceType: deviceType,
+          child: Column(
+            crossAxisAlignment: deviceType == DeviceType.desktop
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              deviceType == DeviceType.desktop
+                  ? ProjectSubTitle(deviceType: deviceType)
+                  : ProjectTitle(deviceType: deviceType),
+              deviceType == DeviceType.desktop
+                  ? ProjectTitle(deviceType: deviceType)
+                  : ProjectSubTitle(deviceType: deviceType),
+              ActionButton('Project Source Code', deviceType: deviceType),
+            ],
           ),
         ),
       ],
     );
   }
 
-  Widget _renderTitle(BuildContext context) {
-    return CustomCursor(
-      cursorStyle: CustomCursor.pointer,
-      child: RichText(
-        text: TextSpan(
-          style: titleTextStyle(context),
-          children: [
-            TextSpan(text: 'CLOCK'),
-            TextSpan(text: 'OF', style: titleHighlightedTextStyle(context)),
-            TextSpan(text: 'CLOCKS'),
-          ],
-        ),
-      ),
-    );
+  Widget _deviceTypeBasedPositioned({
+    @required DeviceType deviceType,
+    @required Widget child,
+  }) {
+    switch (deviceType) {
+      case DeviceType.desktop:
+        return Positioned(bottom: 90, right: 0, child: child);
+      case DeviceType.mobile:
+        return Positioned(bottom: 30, right: 0, left: 0, child: child);
+      case DeviceType.mobileMini:
+        return Positioned(bottom: 20, right: 0, left: 0, child: child);
+      default:
+        return Positioned(bottom: 90, right: 0, child: child);
+    }
   }
 }

@@ -1,48 +1,60 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../../../../../../g_components/core_button.dart';
+import '../../../../../../../../g_helpers/device_type.dart';
 import '../../../../../../../../g_helpers/links.dart';
 import '../../../../../../../../g_styles/colors.dart';
 import '../../../../../../../../g_wrapper/custom_cursor.dart';
 import 'styles.dart';
 
+const projectUrl = 'https://github.com/egorbelibov/clock_of_clocks';
+
 class ActionButton extends StatelessWidget {
   final String text;
-
-  ActionButton(this.text);
+  final DeviceType deviceType;
+  ActionButton(this.text, {@required this.deviceType})
+      : assert(deviceType != null);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        _renderButton(context),
-        _renderDecorativeBox(context),
-      ],
-    );
+    switch (deviceType) {
+      case DeviceType.desktop:
+        return Row(
+          children: [
+            _renderButton(context),
+            _renderPlainBox(context),
+          ],
+        );
+      case DeviceType.mobile:
+        return Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: _renderButton(context),
+        );
+      case DeviceType.mobileMini:
+        return Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: _renderButton(context),
+        );
+      default:
+        return Container();
+    }
   }
 
   Widget _renderButton(BuildContext context) {
     return CustomCursor(
       cursorStyle: CustomCursor.pointer,
       child: CoreButton(
-        height: 60,
-        onTap: () => openWebUrl(
-          'https://github.com/egorbelibov/clock_of_clocks',
-        ),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(5),
-          bottomLeft: Radius.circular(5),
-        ),
+        height: 50,
+        width: buttonWidth(deviceType),
+        onTap: () => openWebUrl(projectUrl),
+        borderRadius: buttonBorderRadius(deviceType),
         color: themeBasedColor(context, PaletteColor.tertiaryColor),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 0,
-            horizontal: 55,
-          ),
+          padding: buttonPadding(deviceType),
           child: Center(
             child: Text(
               'Project Source Code',
-              style: buttonTextStyle(context),
+              style: buttonTextStyle(context, deviceType),
             ),
           ),
         ),
@@ -50,11 +62,19 @@ class ActionButton extends StatelessWidget {
     );
   }
 
-  Widget _renderDecorativeBox(BuildContext context) {
-    return Container(
-      height: 60,
-      width: 45,
-      color: themeBasedColor(context, PaletteColor.primaryColor),
-    );
+  Widget _renderPlainBox(BuildContext context) {
+    if (deviceType == DeviceType.desktop) {
+      return Container(
+        height: 50,
+        width: 45,
+        color: themeBasedColor(context, PaletteColor.primaryColor),
+      );
+    } else {
+      return Container(
+        height: 6,
+        width: 70,
+        color: themeBasedColor(context, PaletteColor.primaryColor),
+      );
+    }
   }
 }

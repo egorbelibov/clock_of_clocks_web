@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../g_helpers/device_type.dart';
 import '../../../../../g_helpers/links.dart';
 import '../../../../../g_styles/colors.dart';
-import '../../../../../g_styles/spaces.dart';
 import '../../../../../g_wrapper/custom_cursor.dart';
 import '../styles.dart';
 
 class DesktopFooter extends StatelessWidget {
+  final DeviceType deviceType;
+
+  DesktopFooter({@required this.deviceType}) : assert(deviceType != null);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: topScreenPadding,
-        horizontal: rightScreenPadding,
-      ),
+      padding: footerPadding(deviceType),
       color: themeBasedColor(context, PaletteColor.footerColor),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +34,7 @@ class DesktopFooter extends StatelessWidget {
           cursorStyle: CustomCursor.text,
           child: SelectableText(
             'Designed & Developed by',
-            style: defaultTextStyle(context),
+            style: defaultTextStyle(context, deviceType),
           ),
         ),
         CustomCursor(
@@ -42,7 +43,7 @@ class DesktopFooter extends StatelessWidget {
             onTap: () => openWebUrl('https://twitter.com/egorbelibov'),
             child: Text(
               'Egor Belibov',
-              style: remarkedTextStyle(context),
+              style: remarkedTextStyle(context, deviceType),
             ),
           ),
         ),
@@ -58,7 +59,7 @@ class DesktopFooter extends StatelessWidget {
           cursorStyle: CustomCursor.text,
           child: SelectableText(
             'Project Source Code',
-            style: remarkedTextStyle(context),
+            style: remarkedTextStyle(context, deviceType),
           ),
         ),
         CustomCursor(
@@ -69,7 +70,7 @@ class DesktopFooter extends StatelessWidget {
             },
             child: Text(
               'github.com/egorbelibov/clock_of_clocks',
-              style: defaultTextStyle(context),
+              style: defaultTextStyle(context, deviceType),
             ),
           ),
         ),

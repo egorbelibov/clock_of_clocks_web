@@ -1,26 +1,26 @@
 import 'package:flutter/widgets.dart';
 
-import '../../../../../../g_helpers/device_type.dart';
-import '../../../../../../g_styles/colors.dart';
-import '../../../../../../g_styles/fonts.dart';
+import '../../../../../../../../g_helpers/device_type.dart';
+import '../../../../../../../../g_styles/colors.dart';
+import '../../../../../../../../g_styles/fonts.dart';
 
-TextStyle defaultTextStyle(BuildContext context, DeviceType deviceType) {
+TextStyle subTitleTextStyle(BuildContext context, DeviceType deviceType) {
   assert(context != null);
   assert(deviceType != null);
 
   switch (deviceType) {
     case DeviceType.desktop:
+    case DeviceType.mobile:
       return TextStyle(
         fontFamily: defaultFontFamily,
-        fontSize: 14,
+        fontSize: 24,
         fontWeight: FontWeight.w100,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );
-    case DeviceType.mobile:
     case DeviceType.mobileMini:
       return TextStyle(
         fontFamily: defaultFontFamily,
-        fontSize: 12,
+        fontSize: 18,
         fontWeight: FontWeight.w100,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );
@@ -29,30 +29,25 @@ TextStyle defaultTextStyle(BuildContext context, DeviceType deviceType) {
   }
 }
 
-TextStyle remarkedTextStyle(BuildContext context, DeviceType deviceType) {
+TextStyle subTitleRemarkedTextStyle(
+    BuildContext context, DeviceType deviceType) {
   assert(context != null);
   assert(deviceType != null);
 
   switch (deviceType) {
     case DeviceType.desktop:
-      return TextStyle(
-        fontFamily: defaultFontFamily,
-        fontSize: 18,
-        fontWeight: FontWeight.w700,
-        color: themeBasedColor(context, PaletteColor.primaryColor),
-      );
     case DeviceType.mobile:
       return TextStyle(
         fontFamily: defaultFontFamily,
-        fontSize: 16,
-        fontWeight: FontWeight.w700,
+        fontSize: 24,
+        fontWeight: FontWeight.w900,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );
     case DeviceType.mobileMini:
       return TextStyle(
         fontFamily: defaultFontFamily,
-        fontSize: 14,
-        fontWeight: FontWeight.w700,
+        fontSize: 18,
+        fontWeight: FontWeight.w900,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );
     default:

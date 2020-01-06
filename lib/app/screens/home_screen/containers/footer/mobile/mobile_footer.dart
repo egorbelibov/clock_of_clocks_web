@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../g_helpers/device_type.dart';
 import '../../../../../g_helpers/links.dart';
 import '../../../../../g_styles/colors.dart';
-import '../../../../../g_styles/spaces.dart';
 import '../../../../../g_wrapper/custom_cursor.dart';
-import 'styles.dart';
+import '../styles.dart';
 
 class MobileFooter extends StatelessWidget {
+  final DeviceType deviceType;
+
+  MobileFooter({@required this.deviceType}) : assert(deviceType != null);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: rightScreenPadding,
-      ),
+      padding: footerPadding(deviceType),
       color: themeBasedColor(context, PaletteColor.footerColor),
       child: Center(
         child: Row(
@@ -23,7 +24,7 @@ class MobileFooter extends StatelessWidget {
               cursorStyle: CustomCursor.text,
               child: SelectableText(
                 'Designed & Developed by',
-                style: defaultTextStyle(context),
+                style: defaultTextStyle(context, deviceType),
               ),
             ),
             CustomCursor(
@@ -32,7 +33,7 @@ class MobileFooter extends StatelessWidget {
                 onTap: () => openWebUrl('https://twitter.com/egorbelibov'),
                 child: Text(
                   'Egor Belibov',
-                  style: remarkedTextStyle(context),
+                  style: remarkedTextStyle(context, deviceType),
                 ),
               ),
             ),

@@ -4,6 +4,8 @@ import '../../../../g_styles/colors.dart';
 import '../../../../g_styles/fonts.dart';
 
 TextStyle titleTextStyle(BuildContext context) {
+  assert(context != null);
+
   return TextStyle(
     fontFamily: defaultFontFamily,
     fontSize: 22,
@@ -13,6 +15,8 @@ TextStyle titleTextStyle(BuildContext context) {
 }
 
 TextStyle highlightedTextStyle(BuildContext context) {
+  assert(context != null);
+
   return TextStyle(
     fontFamily: defaultFontFamily,
     color: themeBasedColor(context, PaletteColor.tertiaryColor),
@@ -20,6 +24,8 @@ TextStyle highlightedTextStyle(BuildContext context) {
 }
 
 TextStyle subTitleTextStyle(BuildContext context) {
+  assert(context != null);
+
   return TextStyle(
     fontFamily: defaultFontFamily,
     fontSize: 18,
