@@ -19,6 +19,7 @@ class _FooterState extends State<Footer> {
   Widget build(BuildContext context) {
     final DeviceType deviceType = subscribeToDeviceType(context);
     switch (deviceType) {
+      case DeviceType.desktopBig:
       case DeviceType.desktop:
         desktopFooter ??= DesktopFooter(deviceType: DeviceType.desktop);
         return desktopFooter;

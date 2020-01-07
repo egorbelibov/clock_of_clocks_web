@@ -3,10 +3,13 @@ import 'package:property_change_notifier/property_change_notifier.dart';
 
 import '../g_models/device_type.dart';
 
-const double desktopMinWidth = 1110;
-const double desktopMinHeight = 800;
+const double desktopBigMinWidth = 1500;
+const double desktopBigMinHeight = 800;
 
-const double mobileMinWidth = 380;
+const double desktopMinWidth = 1110;
+const double desktopMinHeight = 700;
+
+const double mobileMinWidth = 370;
 const double mobileMinHeight = 600;
 
 const double mobileMiniWidth = 0;
@@ -23,7 +26,7 @@ DeviceType subscribeToDeviceType(BuildContext context) {
 }
 
 /// Holds and updates listening widgets about current [DeviceType].
-/// 
+///
 /// Measured by [deviceWidth] & [deviceHeight].
 class Device extends PropertyChangeNotifier<Device> {
   double _deviceWidth = 0;
@@ -64,14 +67,30 @@ class Device extends PropertyChangeNotifier<Device> {
   }
 
   void _determineDeviceType() {
-    if ((_deviceWidth > desktopMinWidth)) {
-      _updateDeviceType(DeviceType.desktop);
+    if ((deviceWidth > desktopBigMinWidth)) {
+      if ((deviceHeight > desktopBigMinHeight)) {
+        _updateDeviceType(DeviceType.desktopBig);
+      } else {
+        _updateDeviceType(DeviceType.mobile);
+      }
       return;
-    } else if ((_deviceWidth > mobileMinWidth)) {
-      _updateDeviceType(DeviceType.mobile);
+    } else if ((deviceWidth > desktopMinWidth)) {
+      if ((deviceHeight > desktopBigMinHeight)) {
+        _updateDeviceType(DeviceType.desktop);
+      } else {
+        _updateDeviceType(DeviceType.mobile);
+      }
+      return;
+    } else if ((deviceWidth > mobileMinWidth)) {
+      if ((deviceHeight > mobileMinHeight)) {
+        _updateDeviceType(DeviceType.mobile);
+      } else {
+        _updateDeviceType(DeviceType.mobileMini);
+      }
       return;
     } else {
       _updateDeviceType(DeviceType.mobileMini);
+      return;
     }
   }
 

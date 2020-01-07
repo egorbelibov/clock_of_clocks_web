@@ -7,6 +7,7 @@ TextStyle buttonTextStyle(BuildContext context, DeviceType deviceType) {
   assert(context != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
     case DeviceType.mobile:
       return TextStyle(
@@ -28,19 +29,25 @@ TextStyle buttonTextStyle(BuildContext context, DeviceType deviceType) {
 }
 
 double buttonWidth(DeviceType deviceType) {
+  assert(deviceType != null);
+
   switch (deviceType) {
     case DeviceType.mobile:
       return 300;
     case DeviceType.mobileMini:
       return 255;
     case DeviceType.desktop:
+    case DeviceType.desktopBig:
     default:
       return null;
   }
 }
 
 BorderRadius buttonBorderRadius(DeviceType deviceType) {
+  assert(deviceType != null);
+
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
       return BorderRadius.only(
         topLeft: Radius.circular(5),
@@ -55,7 +62,10 @@ BorderRadius buttonBorderRadius(DeviceType deviceType) {
 }
 
 EdgeInsetsGeometry buttonPadding(DeviceType deviceType) {
+  assert(deviceType != null);
+
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
     case DeviceType.mobile:
       return const EdgeInsets.symmetric(

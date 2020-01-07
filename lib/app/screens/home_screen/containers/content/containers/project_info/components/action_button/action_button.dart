@@ -10,14 +10,17 @@ import 'styles.dart';
 const projectUrl = 'https://github.com/egorbelibov/clock_of_clocks';
 
 class ActionButton extends StatelessWidget {
-  final String text;
+  final String _text;
   final DeviceType deviceType;
-  ActionButton(this.text, {@required this.deviceType})
-      : assert(deviceType != null);
+
+  ActionButton(this._text, {@required this.deviceType})
+      : assert(_text != null),
+        assert(deviceType != null);
 
   @override
   Widget build(BuildContext context) {
     switch (deviceType) {
+      case DeviceType.desktopBig:
       case DeviceType.desktop:
         return Row(
           children: [
@@ -53,7 +56,7 @@ class ActionButton extends StatelessWidget {
           padding: buttonPadding(deviceType),
           child: Center(
             child: Text(
-              'Project Source Code',
+              _text,
               style: buttonTextStyle(context, deviceType),
             ),
           ),
@@ -63,7 +66,7 @@ class ActionButton extends StatelessWidget {
   }
 
   Widget _renderPlainBox(BuildContext context) {
-    if (deviceType == DeviceType.desktop) {
+    if (isDesktopBased(deviceType)) {
       return Container(
         height: 50,
         width: 45,

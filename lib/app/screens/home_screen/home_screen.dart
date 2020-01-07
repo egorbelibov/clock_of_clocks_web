@@ -11,14 +11,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Device device;
-  Widget homeScreenWidget;
+  Device _device;
+  Widget _homeScreenWidget;
 
   @override
   void initState() {
     super.initState();
-    device = PropertyChangeProvider.of<Device>(context, listen: false).value;
-    assert(device != null);
+    _device = PropertyChangeProvider.of<Device>(context, listen: false).value;
+    assert(_device != null);
   }
 
   @override
@@ -27,16 +27,15 @@ class _HomeScreenState extends State<HomeScreen> {
     // Execute assynchronously at the end of frame.
     var deviceSize = MediaQuery.of(context).size;
     Future.microtask(() {
-      device?.deviceWidth = deviceSize.width;
-      // Right now, only updating [Device] based on deviceWidth.
-      // device?.deviceHeight = deviceSize.height;
+      _device?.deviceWidth = deviceSize.width;
+      _device?.deviceHeight = deviceSize.height;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    homeScreenWidget ??= _renderWidget(context);
-    return homeScreenWidget;
+    _homeScreenWidget ??= _renderWidget(context);
+    return _homeScreenWidget;
   }
 
   Widget _renderWidget(BuildContext context) {
