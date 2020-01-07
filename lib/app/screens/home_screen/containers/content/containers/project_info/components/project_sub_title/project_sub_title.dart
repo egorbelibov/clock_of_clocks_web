@@ -13,7 +13,7 @@ class ProjectSubTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (deviceType == DeviceType.desktop) {
+    if (isDesktopBased(deviceType)) {
       return Padding(
         padding: const EdgeInsets.only(right: rightScreenPadding),
         child: Row(

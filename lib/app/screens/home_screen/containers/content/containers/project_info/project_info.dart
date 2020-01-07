@@ -12,23 +12,27 @@ class ProjectInfo extends StatefulWidget {
 }
 
 class _ProjectInfoState extends State<ProjectInfo> {
-  Widget desktopProjectInfo;
-  Widget mobileProjectInfo;
-  Widget mobileMiniProjectInfo;
+  Widget _desktopBigProjectInfo;
+  Widget _desktopProjectInfo;
+  Widget _mobileProjectInfo;
+  Widget _mobileMiniProjectInfo;
 
   @override
   Widget build(BuildContext context) {
     final DeviceType deviceType = subscribeToDeviceType(context);
     switch (deviceType) {
+      case DeviceType.desktopBig:
+        _desktopBigProjectInfo ??= _renderProjectInfo(DeviceType.desktopBig);
+        return _desktopBigProjectInfo;
       case DeviceType.desktop:
-        desktopProjectInfo ??= _renderProjectInfo(DeviceType.desktop);
-        return desktopProjectInfo;
+        _desktopProjectInfo ??= _renderProjectInfo(DeviceType.desktop);
+        return _desktopProjectInfo;
       case DeviceType.mobile:
-        mobileProjectInfo ??= _renderProjectInfo(DeviceType.mobile);
-        return mobileProjectInfo;
+        _mobileProjectInfo ??= _renderProjectInfo(DeviceType.mobile);
+        return _mobileProjectInfo;
       case DeviceType.mobileMini:
-        mobileMiniProjectInfo ??= _renderProjectInfo(DeviceType.mobileMini);
-        return mobileMiniProjectInfo;
+        _mobileMiniProjectInfo ??= _renderProjectInfo(DeviceType.mobileMini);
+        return _mobileMiniProjectInfo;
       default:
         assert(true); // Should never get into default.
         return null;
@@ -41,15 +45,15 @@ class _ProjectInfoState extends State<ProjectInfo> {
         _deviceTypeBasedPositioned(
           deviceType: deviceType,
           child: Column(
-            crossAxisAlignment: deviceType == DeviceType.desktop
+            crossAxisAlignment: isDesktopBased(deviceType)
                 ? CrossAxisAlignment.end
                 : CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              deviceType == DeviceType.desktop
+              isDesktopBased(deviceType)
                   ? ProjectSubTitle(deviceType: deviceType)
                   : ProjectTitle(deviceType: deviceType),
-              deviceType == DeviceType.desktop
+              isDesktopBased(deviceType)
                   ? ProjectTitle(deviceType: deviceType)
                   : ProjectSubTitle(deviceType: deviceType),
               ActionButton('Project Source Code', deviceType: deviceType),
@@ -65,14 +69,16 @@ class _ProjectInfoState extends State<ProjectInfo> {
     @required Widget child,
   }) {
     switch (deviceType) {
+      case DeviceType.desktopBig:
+        return Positioned(bottom: 50, right: 0, child: child);
       case DeviceType.desktop:
-        return Positioned(bottom: 90, right: 0, child: child);
+        return Positioned(bottom: 40, right: 0, child: child);
       case DeviceType.mobile:
         return Positioned(bottom: 30, right: 0, left: 0, child: child);
       case DeviceType.mobileMini:
         return Positioned(bottom: 20, right: 0, left: 0, child: child);
       default:
-        return Positioned(bottom: 90, right: 0, child: child);
+        return null;
     }
   }
 }

@@ -10,6 +10,7 @@ TextStyle defaultTextStyle(BuildContext context, DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
       return TextStyle(
         fontFamily: defaultFontFamily,
@@ -41,6 +42,7 @@ TextStyle remarkedTextStyle(BuildContext context, DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
       return TextStyle(
         fontFamily: defaultFontFamily,
@@ -71,6 +73,7 @@ EdgeInsetsGeometry footerPadding(DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
       return EdgeInsets.symmetric(
         vertical: topScreenPadding,

@@ -23,6 +23,7 @@ class _ProjectTagState extends State<ProjectTag> {
   Widget build(BuildContext context) {
     deviceType = subscribeToDeviceType(context);
     switch (deviceType) {
+      case DeviceType.desktopBig:
       case DeviceType.desktop:
         return desktopProjectTag ??= _renderProjectTag();
       case DeviceType.mobile:

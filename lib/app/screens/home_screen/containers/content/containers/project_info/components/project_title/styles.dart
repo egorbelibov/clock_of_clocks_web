@@ -9,6 +9,7 @@ TextStyle titleTextStyle(BuildContext context, DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
       return TextStyle(
         fontFamily: defaultFontFamily,
@@ -19,14 +20,14 @@ TextStyle titleTextStyle(BuildContext context, DeviceType deviceType) {
     case DeviceType.mobile:
       return TextStyle(
         fontFamily: defaultFontFamily,
-        fontSize: 45,
+        fontSize: 42,
         fontWeight: FontWeight.w900,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );
     case DeviceType.mobileMini:
       return TextStyle(
         fontFamily: defaultFontFamily,
-        fontSize: 30,
+        fontSize: 34,
         fontWeight: FontWeight.w900,
         color: themeBasedColor(context, PaletteColor.primaryColor),
       );

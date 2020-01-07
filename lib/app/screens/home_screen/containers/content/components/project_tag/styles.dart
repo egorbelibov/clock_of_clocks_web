@@ -9,6 +9,7 @@ TextStyle defaultTextStyle(BuildContext context, DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
     case DeviceType.mobile:
       return TextStyle(
@@ -34,6 +35,7 @@ TextStyle remarkedTextStyle(BuildContext context, DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
       return TextStyle(
         fontFamily: defaultFontFamily,

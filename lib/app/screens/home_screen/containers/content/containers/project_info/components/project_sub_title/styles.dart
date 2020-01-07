@@ -9,6 +9,7 @@ TextStyle subTitleTextStyle(BuildContext context, DeviceType deviceType) {
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
     case DeviceType.mobile:
       return TextStyle(
@@ -35,6 +36,7 @@ TextStyle subTitleRemarkedTextStyle(
   assert(deviceType != null);
 
   switch (deviceType) {
+    case DeviceType.desktopBig:
     case DeviceType.desktop:
     case DeviceType.mobile:
       return TextStyle(
