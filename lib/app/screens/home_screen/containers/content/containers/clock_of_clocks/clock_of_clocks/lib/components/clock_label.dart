@@ -2,8 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:clock_of_clocks_website/app/screens/home_screen/containers/content/containers/clock_of_clocks/lib/styles/colors.dart';
 import 'package:flutter/widgets.dart';
+import '../styles/colors.dart';
 
 class ClockLabel extends StatelessWidget {
   final String label;
