@@ -1,3 +1,4 @@
-# (Clock of Clocks) Clock Face
+# Clock of Clocks
 
-A Digital Clock made of multiple Analog clocks. 
+A beautiful digital clock face made of multiple analog clocks. Made for the **Flutter Clock Challenge**.
+

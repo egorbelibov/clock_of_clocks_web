@@ -24,16 +24,9 @@
 .pub/
 /build/
 
-# Mobile Project related
-**/assets/
-lib/pubspec.yaml
-lib/pubspec.lock
-lib/.metadata
-
 # Web Project Related
-clock_of_clocks/lib/clock.dart
-clock_of_clocks/lib/main.dart
-**flutter_clock_helper/
+lib/clock.dart
+lib/main.dart
 
 # Web related
 lib/generated_plugin_registrant.dart

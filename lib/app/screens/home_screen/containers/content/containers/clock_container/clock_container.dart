@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 
+import '../clock_of_clocks/clock_of_clocks/lib/web_main.dart';
 import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_state/device.dart';
-import '../clock_of_clocks/lib/clock.dart';
 import 'styles.dart';
 
 class ClockContainer extends StatefulWidget {
@@ -11,7 +11,7 @@ class ClockContainer extends StatefulWidget {
 }
 
 class _ClockContainerState extends State<ClockContainer> {
-  Clock clock;
+  ClockOfClocks clock;
   DeviceType _deviceType;
   double _deviceWidth;
   double _deviceHeight;
@@ -29,7 +29,7 @@ class _ClockContainerState extends State<ClockContainer> {
   }
 
   Widget _renderClockContainer() {
-    clock ??= Clock();
+    clock ??= ClockOfClocks();
     return Align(
       alignment: Alignment.topLeft,
       child: Container(

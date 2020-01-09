@@ -9,8 +9,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  intl: ^0.16.1
   property_change_notifier: ^0.2.0
+
+  # For clock_of_clocks (integration):
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:

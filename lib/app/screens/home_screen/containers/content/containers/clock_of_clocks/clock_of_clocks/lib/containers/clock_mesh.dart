@@ -41,7 +41,7 @@ class _ClockMeshState extends State<ClockMesh> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        padding: EdgeInsets.only(top: 50, bottom: 50),
+        padding: EdgeInsets.only(top: 45, bottom: 45),
         child: _renderGridView(),
       ),
     );
