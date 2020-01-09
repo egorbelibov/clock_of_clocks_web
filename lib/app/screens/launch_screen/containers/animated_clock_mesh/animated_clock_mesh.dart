@@ -40,6 +40,7 @@ class _AnimatedClockMeshState extends State<AnimatedClockMesh> {
 
   void _updateState() {
     _timer = Timer(Duration(milliseconds: 500), () {
+      print('meee');
       _updateState();
       _updateClockMeshState();
     });
@@ -60,9 +61,9 @@ class _AnimatedClockMeshState extends State<AnimatedClockMesh> {
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     _timer?.cancel();
-    super.dispose();
+    super.deactivate();
   }
 
   @override
