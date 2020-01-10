@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AugmentTransition extends PageRouteBuilder {
+class ScaleRoute extends PageRouteBuilder {
   final Widget page;
-  AugmentTransition({this.page})
+  ScaleRoute({this.page})
       : super(
           pageBuilder: (
             BuildContext context,
@@ -17,16 +17,17 @@ class AugmentTransition extends PageRouteBuilder {
             Animation<double> animation,
             Animation<double> secondaryAnimation,
             Widget child,
-          ) {
-            return Align(
-              child: SizeTransition(
-                sizeFactor: CurvedAnimation(
-                  parent: animation,
-                  curve: Curves.bounceOut,
-                ),
-                child: child,
-              ),
-            );
-          },
+          ) =>
+              ScaleTransition(
+                  scale: Tween<double>(
+                    begin: 0.0,
+                    end: 1.0,
+                  ).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.bounceOut,
+                    ),
+                  ),
+                  child: child),
         );
 }
