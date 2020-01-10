@@ -65,7 +65,8 @@ class _ClockContainerState extends State<ClockContainer> {
                   decoration: BoxDecoration(
                     color: Color(0xFFFFFFFF),
                   ),
-                  child: Center(
+                  child: AspectRatio(
+                    aspectRatio: 5 / 3,
                     child: clock,
                   ),
                 ),
