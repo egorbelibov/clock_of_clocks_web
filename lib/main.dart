@@ -3,12 +3,23 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart'
     show kIsWeb, debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
+import 'package:property_change_notifier/property_change_notifier.dart';
 
 import 'app/app.dart';
+import 'app/g_state/device.dart';
+import 'app/g_state/theme_essentials.dart';
 
 void main() {
   _setOverrideForDesktop();
-  runApp(App());
+  runApp(
+    PropertyChangeProvider(
+      value: ThemeEssentials(),
+      child: PropertyChangeProvider(
+        value: Device(),
+        child: App(),
+      ),
+    ),
+  );
 }
 
 void _setOverrideForDesktop() {

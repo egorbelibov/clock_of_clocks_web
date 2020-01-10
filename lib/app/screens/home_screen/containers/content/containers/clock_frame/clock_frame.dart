@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../../../../g_models/device_type.dart';
@@ -36,9 +37,9 @@ class _ClockFrameState extends State<ClockFrame> {
         child: FittedBox(
           alignment: Alignment.bottomLeft,
           fit: BoxFit.contain,
-          child: Image.asset(
-            'assets/images/lenovo_clock.png',
-          ),
+            child: Image.asset(
+              'assets/images/lenovo_clock.png',
+            ),
         ),
       ),
     );

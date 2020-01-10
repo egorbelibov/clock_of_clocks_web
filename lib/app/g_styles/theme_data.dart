@@ -1,9 +1,11 @@
-import 'package:clock_of_clocks_website/app/g_styles/fonts.dart';
 import 'package:flutter/material.dart';
 
+import '../g_state/theme_essentials.dart';
 import 'colors.dart';
+import 'fonts.dart';
 
 final appTheme = (context) => ThemeData(
+      brightness: subscribeToBrigthness(context),
       fontFamily: defaultFontFamily,
       primaryColor: themeBasedColor(
         context,

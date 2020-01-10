@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import 'components/clock_table/clock_table.dart';
 import 'components/project_tag/project_tag.dart';
+import 'components/theme_switch/theme_switch.dart';
 import 'containers/clock_container/clock_container.dart';
 import 'containers/clock_frame/clock_frame.dart';
 import 'containers/project_info/project_info.dart';
@@ -18,6 +19,7 @@ class Content extends StatelessWidget {
           ProjectTag(),
           ProjectInfo(),
           ClockContainer(),
+          ThemeSwitch(),
         ],
       ),
     );

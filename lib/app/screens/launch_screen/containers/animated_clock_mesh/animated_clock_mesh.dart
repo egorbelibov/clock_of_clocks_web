@@ -40,7 +40,6 @@ class _AnimatedClockMeshState extends State<AnimatedClockMesh> {
 
   void _updateState() {
     _timer = Timer(Duration(milliseconds: 500), () {
-      print('meee');
       _updateState();
       _updateClockMeshState();
     });

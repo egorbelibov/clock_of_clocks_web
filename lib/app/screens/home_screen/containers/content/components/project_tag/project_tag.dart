@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../g_helpers/links.dart';
 import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_state/device.dart' show subscribeToDeviceType;
+import '../../../../../../g_state/theme_essentials.dart';
 import '../../../../../../g_styles/colors.dart';
 import '../../../../../../g_styles/spaces.dart';
 import '../../../../../../g_wrapper/custom_cursor.dart';
@@ -14,22 +15,35 @@ class ProjectTag extends StatefulWidget {
 }
 
 class _ProjectTagState extends State<ProjectTag> {
-  DeviceType deviceType;
-  Widget desktopProjectTag;
-  Widget mobileProjectTag;
-  Widget mobileMiniProjectTag;
+  DeviceType _deviceType;
+
+  Widget _lightDesktopProjectTag;
+  Widget _darkDesktopProjectTag;
+
+  Widget _lightMobileProjectTag;
+  Widget _darkMobileProjectTag;
+
+  Widget _lightMobileMiniProjectTag;
+  Widget _darkMobileMiniProjectTag;
 
   @override
   Widget build(BuildContext context) {
-    deviceType = subscribeToDeviceType(context);
-    switch (deviceType) {
+    final Brightness brightness = subscribeToBrigthness(context, listen: true);
+    _deviceType = subscribeToDeviceType(context);
+    switch (_deviceType) {
       case DeviceType.desktopBig:
       case DeviceType.desktop:
-        return desktopProjectTag ??= _renderProjectTag();
+        return isLightTheme(brightness)
+            ? _lightDesktopProjectTag ??= _renderProjectTag()
+            : _darkDesktopProjectTag ??= _renderProjectTag();
       case DeviceType.mobile:
-        return mobileProjectTag ??= _renderProjectTag();
+        return isLightTheme(brightness)
+            ? _lightMobileProjectTag ??= _renderProjectTag()
+            : _darkMobileProjectTag ??= _renderProjectTag();
       case DeviceType.mobileMini:
-        return mobileMiniProjectTag ??= _renderProjectTag();
+        return isLightTheme(brightness)
+            ? _lightMobileMiniProjectTag ??= _renderProjectTag()
+            : _darkMobileMiniProjectTag ??= _renderProjectTag();
       default:
         assert(true); // Should never get into default.
         return null;
@@ -40,8 +54,8 @@ class _ProjectTagState extends State<ProjectTag> {
     return Stack(
       children: [
         Positioned(
-          top: deviceType == DeviceType.mobileMini ? 20 : topScreenPadding,
-          right: deviceType == DeviceType.mobileMini ? 20 : rightScreenPadding,
+          top: _deviceType == DeviceType.mobileMini ? 20 : topScreenPadding,
+          right: _deviceType == DeviceType.mobileMini ? 20 : rightScreenPadding,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -63,7 +77,7 @@ class _ProjectTagState extends State<ProjectTag> {
           cursorStyle: CustomCursor.text,
           child: SelectableText(
             'Created for the',
-            style: defaultTextStyle(context, deviceType),
+            style: defaultTextStyle(context, _deviceType),
           ),
         ),
         CustomCursor(
@@ -72,7 +86,7 @@ class _ProjectTagState extends State<ProjectTag> {
             onTap: () => openWebUrl('https://flutter.dev/clock'),
             child: Text(
               'Flutter Clock Challenge',
-              style: remarkedTextStyle(context, deviceType),
+              style: remarkedTextStyle(context, _deviceType),
             ),
           ),
         ),
@@ -89,12 +103,20 @@ class _ProjectTagState extends State<ProjectTag> {
         Container(
           width: containerWidth,
           height: containerHeight,
-          color: themeBasedColor(context, PaletteColor.primaryColor),
+          color: themeBasedColor(
+            context,
+            PaletteColor.primaryColor,
+            listen: false,
+          ),
         ),
         Container(
           width: containerWidth,
           height: containerHeight,
-          color: themeBasedColor(context, PaletteColor.tertiaryColor),
+          color: themeBasedColor(
+            context,
+            PaletteColor.tertiaryColor,
+            listen: false,
+          ),
         )
       ],
     );
