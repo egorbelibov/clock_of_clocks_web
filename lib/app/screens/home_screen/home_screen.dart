@@ -49,8 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: themeBasedColor(context, PaletteColor.backgroundColor,
-            listen: false),
+        backgroundColor: themeBasedColor(
+          context,
+          PaletteColor.backgroundColor,
+          listen: false,
+        ),
         resizeToAvoidBottomPadding: false,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
