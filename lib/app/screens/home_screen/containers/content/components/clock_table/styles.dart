@@ -10,7 +10,6 @@ double clockTableHeight(DeviceType deviceType, double deviceHeight) {
     case DeviceType.desktop:
       return deviceHeight / 1.70;
     case DeviceType.mobile:
-      return deviceHeight / 1.75;
     case DeviceType.mobileMini:
       return deviceHeight / 1.80;
     default:
