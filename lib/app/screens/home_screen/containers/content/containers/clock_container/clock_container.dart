@@ -1,3 +1,4 @@
+import 'package:clock_of_clocks_website/app/screens/home_screen/containers/content/components/google_launcher/google_launcher.dart';
 import 'package:flutter/widgets.dart';
 
 import '../clock_of_clocks/clock_of_clocks/lib/web_main.dart';
@@ -30,6 +31,40 @@ class _ClockContainerState extends State<ClockContainer> {
 
   Widget _renderClockContainer() {
     clock ??= ClockOfClocks();
+
+    if (true) {
+      return _transformedContainer(
+        child: _decoratedScreenContainer(
+          backgroundColor: Color(0xFF000000),
+          child: GoogleLauncher(),
+        ),
+      );
+    } else {
+      return _transformedContainer(
+        child: _decoratedScreenContainer(
+          backgroundColor: Color(0xFFFFFFFF),
+          child: clock,
+        ),
+      );
+    }
+  }
+
+  Widget _decoratedScreenContainer({
+    @required Color backgroundColor,
+    @required Widget child,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: backgroundColor,
+      ),
+      child: AspectRatio(
+        aspectRatio: 5 / 3,
+        child: child,
+      ),
+    );
+  }
+
+  Widget _transformedContainer({@required Widget child}) {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
@@ -59,17 +94,7 @@ class _ClockContainerState extends State<ClockContainer> {
                     ..rotateY(-0.25)
                     ..rotateZ(-0.25))
                   ..absolute(),
-                child: Container(
-                  width: 800,
-                  height: 900,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF),
-                  ),
-                  child: AspectRatio(
-                    aspectRatio: 5 / 3,
-                    child: clock,
-                  ),
-                ),
+                child: child,
               ),
             ),
           ),
