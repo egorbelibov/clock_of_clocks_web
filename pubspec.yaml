@@ -23,4 +23,6 @@ flutter:
 
   assets:
    - assets/images/clock_table.png
+   - assets/images/clock_table_dark.png
    - assets/images/lenovo_clock.png
+   - assets/images/lenovo_clock_dark.png

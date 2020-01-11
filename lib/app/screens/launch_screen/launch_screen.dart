@@ -47,6 +47,8 @@ class _LaunchScreenState extends State<LaunchScreen> {
 
   void _preCacheImages() {
     precacheImage(AssetImage('assets/images/lenovo_clock.png'), context);
+    precacheImage(AssetImage('assets/images/lenovo_clock_dark.png'), context);
     precacheImage(AssetImage('assets/images/clock_table.png'), context);
+    precacheImage(AssetImage('assets/images/clock_table_dark.png'), context);
   }
 }
