@@ -1,0 +1,3 @@
+[submodule "lib/app/screens/home_screen/containers/content/containers/clock_of_clocks"]
+	path = lib/app/screens/home_screen/containers/content/containers/clock_of_clocks
+	url = git@github.com:egorbelibov/clock_of_clocks.git

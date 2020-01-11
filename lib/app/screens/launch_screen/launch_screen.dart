@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../g_styles/colors.dart';
 import '../../routes.dart' show homeScreenRoute;
 import 'containers/animated_clock_mesh/animated_clock_mesh.dart';
 import 'containers/project_info/project_info.dart';
@@ -15,14 +16,17 @@ class _LaunchScreenState extends State<LaunchScreen> {
     super.initState();
     Future.delayed(Duration(milliseconds: 5000), () {
       Navigator.of(context).popAndPushNamed(homeScreenRoute);
-      // Call dispose (cause pop() never calls it...)
-      super.dispose();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: themeBasedColor(
+        context,
+        PaletteColor.backgroundColor,
+        listen: false,
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -33,5 +37,18 @@ class _LaunchScreenState extends State<LaunchScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _preCacheImages();
+  }
+
+  void _preCacheImages() {
+    precacheImage(AssetImage('assets/images/lenovo_clock.png'), context);
+    precacheImage(AssetImage('assets/images/lenovo_clock_dark.png'), context);
+    precacheImage(AssetImage('assets/images/clock_table.png'), context);
+    precacheImage(AssetImage('assets/images/clock_table_dark.png'), context);
   }
 }

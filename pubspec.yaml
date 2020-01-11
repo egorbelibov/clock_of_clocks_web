@@ -11,6 +11,9 @@ dependencies:
 
   property_change_notifier: ^0.2.0
 
+  # For clock_of_clocks (integration):
+  intl: ^0.16.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -20,4 +23,6 @@ flutter:
 
   assets:
    - assets/images/clock_table.png
+   - assets/images/clock_table_dark.png
    - assets/images/lenovo_clock.png
+   - assets/images/lenovo_clock_dark.png

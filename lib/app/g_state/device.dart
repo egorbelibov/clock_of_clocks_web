@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:property_change_notifier/property_change_notifier.dart';
 
 import '../g_models/device_type.dart';
@@ -28,7 +28,9 @@ DeviceType subscribeToDeviceType(BuildContext context) {
 /// Holds and updates listening widgets about current [DeviceType].
 ///
 /// Measured by [deviceWidth] & [deviceHeight].
-class Device extends PropertyChangeNotifier<Device> {
+class Device extends PropertyChangeNotifier<String> {
+  Brightness brightness = Brightness.light;
+
   double _deviceWidth = 0;
   double _deviceHeight = 0;
 
@@ -95,7 +97,6 @@ class Device extends PropertyChangeNotifier<Device> {
   }
 
   void _updateDeviceType(DeviceType deviceType) {
-    // print('Device; ${deviceType}');
     this.deviceType = deviceType;
     notifyListeners();
   }

@@ -60,9 +60,9 @@ class _AnimatedClockMeshState extends State<AnimatedClockMesh> {
   }
 
   @override
-  void dispose() {
+  void deactivate() {
     _timer?.cancel();
-    super.dispose();
+    super.deactivate();
   }
 
   @override
