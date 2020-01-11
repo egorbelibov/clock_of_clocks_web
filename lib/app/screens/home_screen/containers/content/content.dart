@@ -12,7 +12,6 @@ class Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Stack(
-        fit: StackFit.expand,
         children: [
           ClockTable(),
           ClockFrame(),

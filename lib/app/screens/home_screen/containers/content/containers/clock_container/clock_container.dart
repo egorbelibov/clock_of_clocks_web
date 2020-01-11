@@ -1,9 +1,9 @@
-import 'package:clock_of_clocks_website/app/screens/home_screen/containers/content/components/google_launcher/google_launcher.dart';
 import 'package:flutter/widgets.dart';
 
-import '../clock_of_clocks/clock_of_clocks/lib/web_main.dart';
 import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_state/device.dart';
+import '../../components/clock_launcher/clock_launcher.dart';
+import '../clock_of_clocks/clock_of_clocks/lib/web_main.dart';
 import 'styles.dart';
 
 class ClockContainer extends StatefulWidget {
@@ -16,6 +16,8 @@ class _ClockContainerState extends State<ClockContainer> {
   DeviceType _deviceType;
   double _deviceWidth;
   double _deviceHeight;
+
+  bool launcherIsLoading = true;
 
   @override
   Widget build(BuildContext context) {
@@ -32,21 +34,33 @@ class _ClockContainerState extends State<ClockContainer> {
   Widget _renderClockContainer() {
     clock ??= ClockOfClocks();
 
-    if (true) {
-      return _transformedContainer(
-        child: _decoratedScreenContainer(
-          backgroundColor: Color(0xFF000000),
-          child: GoogleLauncher(),
+    return _transformedContainer(
+      child: _decoratedScreenContainer(
+        backgroundColor: Color(0xFF000000),
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 1000),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return ScaleTransition(
+              child: child,
+              scale: Tween<double>(
+                begin: 0.0,
+                end: 1.0,
+              ).animate(
+                CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeOutSine,
+                ),
+              ),
+            );
+          },
+          child: launcherIsLoading
+              ? ClockLauncher(onFinished: () {
+                  setState(() => launcherIsLoading = false);
+                })
+              : clock,
         ),
-      );
-    } else {
-      return _transformedContainer(
-        child: _decoratedScreenContainer(
-          backgroundColor: Color(0xFFFFFFFF),
-          child: clock,
-        ),
-      );
-    }
+      ),
+    );
   }
 
   Widget _decoratedScreenContainer({
@@ -92,8 +106,7 @@ class _ClockContainerState extends State<ClockContainer> {
                     ..setEntry(3, 2, 0.001)
                     ..rotateX(-0.20)
                     ..rotateY(-0.25)
-                    ..rotateZ(-0.25))
-                  ..absolute(),
+                    ..rotateZ(-0.25)),
                 child: child,
               ),
             ),
