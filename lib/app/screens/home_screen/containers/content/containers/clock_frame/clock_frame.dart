@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_state/device.dart';
+import '../../../../../../g_state/theme_essentials.dart' show subscribeToBrigthness;
+import '../../../../../../g_styles/colors.dart' show isLightTheme;
 import 'styles.dart';
 
 class ClockFrame extends StatefulWidget {
@@ -14,10 +17,13 @@ class _ClockFrameState extends State<ClockFrame> {
   double _deviceWidth;
   double _deviceHeight;
 
+  Image lightImageAsset;
+  Image darkImageAsset;
+
   @override
   Widget build(BuildContext context) {
     _updateDeviceInfo();
-    return _renderClock();
+    return _buildClock();
   }
 
   void _updateDeviceInfo() {
@@ -26,7 +32,16 @@ class _ClockFrameState extends State<ClockFrame> {
     _deviceHeight = MediaQuery.of(context).size.height;
   }
 
-  Widget _renderClock() {
+  Widget _buildClock() {
+    final Brightness brightness = subscribeToBrigthness(context);
+    final bool themeIsLight = isLightTheme(brightness);
+
+    if (themeIsLight) {
+      lightImageAsset ??= Image.asset('assets/images/lenovo_clock.png');
+    } else {
+      darkImageAsset ??= Image.asset('assets/images/lenovo_clock_dark.png');
+    }
+
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
@@ -36,9 +51,7 @@ class _ClockFrameState extends State<ClockFrame> {
         child: FittedBox(
           alignment: Alignment.bottomLeft,
           fit: BoxFit.contain,
-          child: Image.asset(
-            'assets/images/lenovo_clock.png',
-          ),
+          child: themeIsLight ? lightImageAsset : darkImageAsset,
         ),
       ),
     );
