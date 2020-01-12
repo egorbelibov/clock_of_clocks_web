@@ -1,5 +1,6 @@
-import 'package:clock_of_clocks_website/app/g_animations/funny_pulsing_squares/funny_pulsing_squares.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../../g_animations/funny_pulsing_squares/funny_pulsing_squares.dart';
 
 class ClockLauncher extends StatefulWidget {
   final Function onFinished;

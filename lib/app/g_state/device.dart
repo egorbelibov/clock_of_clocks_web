@@ -29,8 +29,6 @@ DeviceType subscribeToDeviceType(BuildContext context) {
 ///
 /// Measured by [deviceWidth] & [deviceHeight].
 class Device extends PropertyChangeNotifier<String> {
-  Brightness brightness = Brightness.light;
-
   double _deviceWidth = 0;
   double _deviceHeight = 0;
 
@@ -59,12 +57,12 @@ class Device extends PropertyChangeNotifier<String> {
     }
   }
 
-  bool _isBigDifference(double x, double y) {
-    if (x > 500) {
-      return (y - x).abs() > 100;
+  bool _isBigDifference(double newX, double oldX) {
+    if (newX > 500) {
+      return (oldX - newX).abs() > 100;
     } else {
       // Make it more precise when on lower values
-      return (y - x).abs() > 25;
+      return (oldX - newX).abs() > 25;
     }
   }
 
@@ -77,7 +75,7 @@ class Device extends PropertyChangeNotifier<String> {
       }
       return;
     } else if ((deviceWidth > desktopMinWidth)) {
-      if ((deviceHeight > desktopBigMinHeight)) {
+      if ((deviceHeight > desktopMinHeight)) {
         _updateDeviceType(DeviceType.desktop);
       } else {
         _updateDeviceType(DeviceType.mobile);
