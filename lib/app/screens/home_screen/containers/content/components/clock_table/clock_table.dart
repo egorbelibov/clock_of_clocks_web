@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
 
+import '../../../../../../g_extensions/apt_brightness.dart';
 import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_state/device.dart';
 import '../../../../../../g_state/theme_essentials.dart'
     show subscribeToBrigthness;
-import '../../../../../../g_styles/colors.dart' show isLightTheme;
 import 'styles.dart';
 
 class ClockTable extends StatefulWidget {
@@ -34,7 +34,7 @@ class _ClockTableState extends State<ClockTable> {
 
   Widget _buildClockTable() {
     final Brightness brightness = subscribeToBrigthness(context);
-    final bool themeIsLight = isLightTheme(brightness);
+    final bool themeIsLight = brightness.isLight();
 
     if (themeIsLight) {
       lightImageAsset ??= Image.asset(

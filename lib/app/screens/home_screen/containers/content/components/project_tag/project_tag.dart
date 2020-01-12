@@ -7,6 +7,7 @@ import '../../../../../../g_state/theme_essentials.dart';
 import '../../../../../../g_styles/colors.dart';
 import '../../../../../../g_styles/spaces.dart';
 import '../../../../../../g_wrapper/custom_cursor.dart';
+import '../../../../../../g_extensions/apt_brightness.dart';
 import 'styles.dart';
 
 class ProjectTag extends StatefulWidget {
@@ -33,24 +34,24 @@ class _ProjectTagState extends State<ProjectTag> {
     switch (_deviceType) {
       case DeviceType.desktopBig:
       case DeviceType.desktop:
-        return isLightTheme(brightness)
-            ? _lightDesktopProjectTag ??= _renderProjectTag()
-            : _darkDesktopProjectTag ??= _renderProjectTag();
+        return brightness.isLight()
+            ? _lightDesktopProjectTag ??= _buildProjectTag()
+            : _darkDesktopProjectTag ??= _buildProjectTag();
       case DeviceType.mobile:
-        return isLightTheme(brightness)
-            ? _lightMobileProjectTag ??= _renderProjectTag()
-            : _darkMobileProjectTag ??= _renderProjectTag();
+        return brightness.isLight()
+            ? _lightMobileProjectTag ??= _buildProjectTag()
+            : _darkMobileProjectTag ??= _buildProjectTag();
       case DeviceType.mobileMini:
-        return isLightTheme(brightness)
-            ? _lightMobileMiniProjectTag ??= _renderProjectTag()
-            : _darkMobileMiniProjectTag ??= _renderProjectTag();
+        return brightness.isLight()
+            ? _lightMobileMiniProjectTag ??= _buildProjectTag()
+            : _darkMobileMiniProjectTag ??= _buildProjectTag();
       default:
         assert(true); // Should never get into default.
         return null;
     }
   }
 
-  Widget _renderProjectTag() {
+  Widget _buildProjectTag() {
     return Stack(
       children: [
         Positioned(

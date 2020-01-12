@@ -24,22 +24,22 @@ class AnimatedAnalogClock extends StatelessWidget {
         gradient: primaryGradient(context),
       ),
       child: Stack(
-        children: _renderClockHands(),
+        children: _buildClockHands(),
       ),
     );
   }
 
-  List<Widget> _renderClockHands() {
+  List<Widget> _buildClockHands() {
     List<Widget> clockHandWidgets = [];
 
     clockHandAngles.forEach((_, angle) {
-      clockHandWidgets.add(_renderClockHand(angle));
+      clockHandWidgets.add(_buildClockHand(angle));
     });
 
     return clockHandWidgets;
   }
 
-  Widget _renderClockHand(double angle) {
+  Widget _buildClockHand(double angle) {
     final angleTween = Tween<double>(begin: pi * 3 / 2, end: angle);
     return TweenAnimationBuilder(
       curve: Curves.elasticOut,

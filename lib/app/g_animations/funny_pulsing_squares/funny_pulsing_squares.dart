@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class FunnyPulsingSquares extends StatefulWidget {
   const FunnyPulsingSquares({
@@ -69,11 +69,11 @@ class _FunnyPulsingSquaresState extends State<FunnyPulsingSquares>
             children: [
               Positioned(
                 top: 0.0,
-                child: _box(1.0 - _scale.value.abs()),
+                child: _buildBox(1.0 - _scale.value.abs()),
               ),
               Positioned(
                 bottom: 0.0,
-                child: _box(_scale.value.abs()),
+                child: _buildBox(_scale.value.abs()),
               ),
             ],
           ),
@@ -82,7 +82,7 @@ class _FunnyPulsingSquaresState extends State<FunnyPulsingSquares>
     );
   }
 
-  Widget _box(double scale) {
+  Widget _buildBox(double scale) {
     return Transform.scale(
       scale: scale,
       child: SizedBox.fromSize(
