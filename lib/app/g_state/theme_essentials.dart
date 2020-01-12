@@ -29,8 +29,10 @@ class ThemeEssentials extends PropertyChangeNotifier<String> {
   ThemeEssentials();
 
   get brightness => _brightness;
-  set brightness(Brightness brightness) {
-    _brightness = brightness;
-    notifyListeners();
+  set brightness(Brightness newBrightness) {
+    if (newBrightness != _brightness) {
+      _brightness = newBrightness;
+      notifyListeners();
+    }
   }
 }
