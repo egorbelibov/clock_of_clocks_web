@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import '../../../../../../g_models/device_type.dart';
 import '../../../../../../g_state/device.dart';
 import '../../../../../../g_state/theme_essentials.dart' show subscribeToBrigthness;
-import '../../../../../../g_styles/colors.dart' show isLightTheme;
+import '../../../../../../g_extensions/apt_brightness.dart';
 import 'styles.dart';
 
 class ClockFrame extends StatefulWidget {
@@ -34,7 +34,7 @@ class _ClockFrameState extends State<ClockFrame> {
 
   Widget _buildClock() {
     final Brightness brightness = subscribeToBrigthness(context);
-    final bool themeIsLight = isLightTheme(brightness);
+    final bool themeIsLight = brightness.isLight();
 
     if (themeIsLight) {
       lightImageAsset ??= Image.asset('assets/images/lenovo_clock.png');

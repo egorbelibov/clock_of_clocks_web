@@ -22,16 +22,16 @@ class _ProjectInfoState extends State<ProjectInfo> {
     final DeviceType deviceType = subscribeToDeviceType(context);
     switch (deviceType) {
       case DeviceType.desktopBig:
-        _desktopBigProjectInfo ??= _renderProjectInfo(DeviceType.desktopBig);
+        _desktopBigProjectInfo ??= _buildProjectInfo(DeviceType.desktopBig);
         return _desktopBigProjectInfo;
       case DeviceType.desktop:
-        _desktopProjectInfo ??= _renderProjectInfo(DeviceType.desktop);
+        _desktopProjectInfo ??= _buildProjectInfo(DeviceType.desktop);
         return _desktopProjectInfo;
       case DeviceType.mobile:
-        _mobileProjectInfo ??= _renderProjectInfo(DeviceType.mobile);
+        _mobileProjectInfo ??= _buildProjectInfo(DeviceType.mobile);
         return _mobileProjectInfo;
       case DeviceType.mobileMini:
-        _mobileMiniProjectInfo ??= _renderProjectInfo(DeviceType.mobileMini);
+        _mobileMiniProjectInfo ??= _buildProjectInfo(DeviceType.mobileMini);
         return _mobileMiniProjectInfo;
       default:
         assert(true); // Should never get into default.
@@ -39,21 +39,21 @@ class _ProjectInfoState extends State<ProjectInfo> {
     }
   }
 
-  Widget _renderProjectInfo(DeviceType deviceType) {
+  Widget _buildProjectInfo(DeviceType deviceType) {
     return Stack(
       children: [
         _deviceTypeBasedPositioned(
           deviceType: deviceType,
           child: Column(
-            crossAxisAlignment: isDesktopBased(deviceType)
+            crossAxisAlignment: deviceType.isDesktopBased()
                 ? CrossAxisAlignment.end
                 : CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              isDesktopBased(deviceType)
+              deviceType.isDesktopBased()
                   ? ProjectSubTitle(deviceType: deviceType)
                   : ProjectTitle(deviceType: deviceType),
-              isDesktopBased(deviceType)
+              deviceType.isDesktopBased()
                   ? ProjectTitle(deviceType: deviceType)
                   : ProjectSubTitle(deviceType: deviceType),
               ActionButton('Project Source Code', deviceType: deviceType),

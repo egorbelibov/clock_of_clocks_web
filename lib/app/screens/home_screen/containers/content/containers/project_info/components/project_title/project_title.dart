@@ -12,17 +12,17 @@ class ProjectTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isDesktopBased(deviceType)) {
+    if (deviceType.isDesktopBased()) {
       return Padding(
         padding: const EdgeInsets.only(right: rightScreenPadding),
-        child: _renderTitleGroup(context),
+        child: _buildTitleGroup(context),
       );
     } else {
-      return _renderTitleGroup(context);
+      return _buildTitleGroup(context);
     }
   }
 
-  Widget _renderTitleGroup(BuildContext context) {
+  Widget _buildTitleGroup(BuildContext context) {
     return CustomCursor(
       cursorStyle: CustomCursor.pointer,
       child: Center(

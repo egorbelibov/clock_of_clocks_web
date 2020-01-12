@@ -74,12 +74,12 @@ class _AnimatedClockMeshState extends State<AnimatedClockMesh> {
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         crossAxisCount: 2,
-        children: _renderClocks(),
+        children: _buildClocks(),
       ),
     );
   }
 
-  List<Widget> _renderClocks() {
+  List<Widget> _buildClocks() {
     List<Widget> clockWidgets = [];
     clockMeshState.forEach((_, handAngles) {
       clockWidgets.add(AnimatedAnalogClock(clockHandAngles: handAngles));

@@ -1,10 +1,10 @@
 import 'dart:math';
 
-import 'package:clock_of_clocks_website/app/g_state/theme_essentials.dart';
 import 'package:flutter/material.dart';
 import 'package:property_change_notifier/property_change_notifier.dart';
 
-import '../../../../../../g_styles/colors.dart';
+import '../../../../../../g_extensions/apt_brightness.dart';
+import '../../../../../../g_state/theme_essentials.dart';
 import '../../../../../../g_wrapper/custom_cursor.dart';
 
 class ThemeSwitch extends StatefulWidget {
@@ -20,7 +20,7 @@ class _ClockFrameState extends State<ThemeSwitch> {
   Brightness _brightness;
 
   void _updateThemeBrightness() {
-    if (isLightTheme(_brightness)) {
+    if (_brightness.isLight()) {
       setState(() => _brightness = Brightness.dark);
       _themeState.brightness = Brightness.dark;
     } else {
@@ -46,11 +46,10 @@ class _ClockFrameState extends State<ThemeSwitch> {
   }
 
   Widget _buildSwitch() {
-    final primaryColor = isLightTheme(_brightness)
-        ? lightThemePrimaryColor
-        : darkThemePrimaryColor;
+    final primaryColor =
+        _brightness.isLight() ? lightThemePrimaryColor : darkThemePrimaryColor;
 
-    final rotationAngle = isLightTheme(_brightness) ? 0 : pi;
+    final rotationAngle = _brightness.isLight() ? 0 : pi;
     final rotationAngleTween = Tween<double>(
       begin: 0,
       end: rotationAngle,
