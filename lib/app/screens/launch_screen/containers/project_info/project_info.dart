@@ -11,14 +11,14 @@ class ProjectInfo extends StatelessWidget {
       padding: const EdgeInsets.only(top: 22.0),
       child: Column(
         children: [
-          _renderTitle(context),
-          _renderSubTitle(context),
+          _buildTitle(context),
+          _buildSubTitle(context),
         ],
       ),
     );
   }
 
-  Widget _renderTitle(BuildContext context) {
+  Widget _buildTitle(BuildContext context) {
     return CustomCursor(
       cursorStyle: CustomCursor.pointer,
       child: RichText(
@@ -31,7 +31,7 @@ class ProjectInfo extends StatelessWidget {
     );
   }
 
-  Widget _renderSubTitle(BuildContext context) {
+  Widget _buildSubTitle(BuildContext context) {
     return CustomCursor(
       cursorStyle: CustomCursor.text,
       child: RichText(

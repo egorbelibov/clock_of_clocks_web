@@ -24,26 +24,26 @@ class ActionButton extends StatelessWidget {
       case DeviceType.desktop:
         return Row(
           children: [
-            _renderButton(context),
-            _renderPlainBox(context),
+            _buildButton(context),
+            _buildPlainBox(context),
           ],
         );
       case DeviceType.mobile:
         return Padding(
           padding: const EdgeInsets.only(top: 20),
-          child: _renderButton(context),
+          child: _buildButton(context),
         );
       case DeviceType.mobileMini:
         return Padding(
           padding: const EdgeInsets.only(top: 15),
-          child: _renderButton(context),
+          child: _buildButton(context),
         );
       default:
         return Container();
     }
   }
 
-  Widget _renderButton(BuildContext context) {
+  Widget _buildButton(BuildContext context) {
     return CustomCursor(
       cursorStyle: CustomCursor.pointer,
       child: CoreButton(
@@ -65,8 +65,8 @@ class ActionButton extends StatelessWidget {
     );
   }
 
-  Widget _renderPlainBox(BuildContext context) {
-    if (isDesktopBased(deviceType)) {
+  Widget _buildPlainBox(BuildContext context) {
+    if (deviceType.isDesktopBased()) {
       return Container(
         height: 50,
         width: 45,

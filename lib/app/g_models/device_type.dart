@@ -5,7 +5,8 @@ enum DeviceType {
   mobileMini,
 }
 
-bool isDesktopBased(DeviceType deviceType) {
-  return (deviceType == DeviceType.desktopBig ||
-      deviceType == DeviceType.desktop);
+extension AptDeviceType on DeviceType {
+  bool isDesktopBased() {
+    return this == DeviceType.desktopBig || this == DeviceType.desktop;
+  }
 }

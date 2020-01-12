@@ -13,16 +13,17 @@ class ClockContainer extends StatefulWidget {
 
 class _ClockContainerState extends State<ClockContainer> {
   ClockOfClocks clock;
+  ClockLauncher clockLauncher;
+  bool launcherIsLoading = true;
+
   DeviceType _deviceType;
   double _deviceWidth;
   double _deviceHeight;
 
-  bool launcherIsLoading = true;
-
   @override
   Widget build(BuildContext context) {
     _updateDeviceInfo();
-    return _renderClockContainer();
+    return _buildClockContainer();
   }
 
   void _updateDeviceInfo() {
@@ -31,35 +32,48 @@ class _ClockContainerState extends State<ClockContainer> {
     _deviceHeight = MediaQuery.of(context).size.height;
   }
 
-  Widget _renderClockContainer() {
+  Widget _buildClockContainer() {
     clock ??= ClockOfClocks();
+    clockLauncher ??= ClockLauncher(
+      onFinished: () => setState(() => launcherIsLoading = false),
+    );
 
     return _transformedContainer(
       child: _decoratedScreenContainer(
         backgroundColor: Color(0xFF000000),
-        child: AnimatedSwitcher(
-          duration: Duration(milliseconds: 1000),
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            return ScaleTransition(
-              child: child,
-              scale: Tween<double>(
-                begin: 0.0,
-                end: 1.0,
-              ).animate(
-                CurvedAnimation(
-                  parent: animation,
-                  curve: Curves.easeOutSine,
-                ),
-              ),
-            );
-          },
-          child: launcherIsLoading
-              ? ClockLauncher(onFinished: () {
-                  setState(() => launcherIsLoading = false);
-                })
-              : clock,
+        child: _animatedWidgetSwitcher(
+          condition: launcherIsLoading,
+          from: clockLauncher,
+          to: clock,
         ),
       ),
+    );
+  }
+
+  Widget _animatedWidgetSwitcher({
+    @required bool condition,
+    @required Widget from,
+    @required Widget to,
+  }) {
+    assert(condition != null && from != null && to != null);
+
+    return AnimatedSwitcher(
+      duration: Duration(milliseconds: 1000),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return ScaleTransition(
+          child: child,
+          scale: Tween<double>(
+            begin: 0.0,
+            end: 1.0,
+          ).animate(
+            CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutSine,
+            ),
+          ),
+        );
+      },
+      child: condition ? from : to,
     );
   }
 
@@ -67,6 +81,8 @@ class _ClockContainerState extends State<ClockContainer> {
     @required Color backgroundColor,
     @required Widget child,
   }) {
+    assert(backgroundColor != null && child != null);
+
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
@@ -79,6 +95,8 @@ class _ClockContainerState extends State<ClockContainer> {
   }
 
   Widget _transformedContainer({@required Widget child}) {
+    assert(child != null);
+
     return Align(
       alignment: Alignment.topLeft,
       child: Container(

@@ -1,8 +1,10 @@
-import 'package:clock_of_clocks_website/app/g_state/theme_essentials.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show Brightness, Scaffold;
+import 'package:flutter/widgets.dart';
 import 'package:property_change_notifier/property_change_notifier.dart';
 
+import '../../g_extensions/apt_brightness.dart';
 import '../../g_state/device.dart';
+import '../../g_state/theme_essentials.dart';
 import '../../g_styles/colors.dart';
 import 'containers/content/content.dart';
 import 'containers/footer/footer.dart';
@@ -38,14 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Brightness brightness = subscribeToBrigthness(context);
-    if (isLightTheme(brightness)) {
-      return _lightHomeScreen ??= _renderWidget(context);
+    if (brightness.isLight()) {
+      return _lightHomeScreen ??= _buildWidget(context);
     } else {
-      return _darkHomeScreen ??= _renderWidget(context);
+      return _darkHomeScreen ??= _buildWidget(context);
     }
   }
 
-  Widget _renderWidget(BuildContext context) {
+  Widget _buildWidget(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(

@@ -19,14 +19,14 @@ class DesktopFooter extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _leftColumn(context),
-          _rightColumn(context),
+          _buildLeftColumn(context),
+          _buildRightColumn(context),
         ],
       ),
     );
   }
 
-  Widget _leftColumn(BuildContext context) {
+  Widget _buildLeftColumn(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -51,7 +51,7 @@ class DesktopFooter extends StatelessWidget {
     );
   }
 
-  Widget _rightColumn(BuildContext context) {
+  Widget _buildRightColumn(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [

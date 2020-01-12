@@ -18,7 +18,8 @@ class CoreButton extends StatefulWidget {
     this.color,
     this.gradient,
     this.borderRadius,
-  });
+  })  : assert(child != null),
+        assert(onTap != null);
 
   @override
   _CoreButtonState createState() => _CoreButtonState();

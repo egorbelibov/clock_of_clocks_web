@@ -13,27 +13,26 @@ class ProjectSubTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (isDesktopBased(deviceType)) {
+    if (deviceType.isDesktopBased()) {
       return Padding(
         padding: const EdgeInsets.only(right: rightScreenPadding),
         child: Row(
-          children: _renderSubTitleTextGroup(context),
+          children: _buildSubTitleTextGroup(context),
         ),
       );
     } else {
       return Column(
-        children: _renderSubTitleTextGroup(context),
+        children: _buildSubTitleTextGroup(context),
       );
     }
   }
 
-  List<Widget> _renderSubTitleTextGroup(BuildContext context) {
+  List<Widget> _buildSubTitleTextGroup(BuildContext context) {
     return [
       CustomCursor(
         cursorStyle: CustomCursor.text,
         child: SelectableText(
-          'Designed & Developed for' +
-              (deviceType == DeviceType.desktop ? ' ' : ''),
+          'Designed & Developed for' + (deviceType.isDesktopBased() ? ' ' : ''),
           style: subTitleTextStyle(context, deviceType),
         ),
       ),

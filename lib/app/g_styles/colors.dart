@@ -1,5 +1,9 @@
+import 'dart:ui';
+
+import 'package:flutter/widgets.dart';
+
+import '../g_extensions/apt_brightness.dart';
 import '../g_state/theme_essentials.dart';
-import 'package:flutter/material.dart';
 
 enum PaletteColor {
   primaryColor,
@@ -43,34 +47,28 @@ Color themeBasedColor(
   bool listen = true,
 }) {
   final Brightness brightness = subscribeToBrigthness(context, listen: listen);
-  final isLightTheme = brightness == Brightness.light;
+  final isLight = brightness.isLight();
 
   switch (color) {
     case PaletteColor.primaryColor:
-      return isLightTheme ? lightPrimaryColor : darkPrimaryColor;
+      return isLight ? lightPrimaryColor : darkPrimaryColor;
     case PaletteColor.secondaryColor:
-      return isLightTheme ? lightSecondaryColor : darkSecondaryColor;
+      return isLight ? lightSecondaryColor : darkSecondaryColor;
     case PaletteColor.tertiaryColor:
-      return isLightTheme ? lightTertiaryColor : darkTertiaryColor;
+      return isLight ? lightTertiaryColor : darkTertiaryColor;
     case PaletteColor.backgroundColor:
-      return isLightTheme ? lightBackgroundColor : darkBackgroundColor;
+      return isLight ? lightBackgroundColor : darkBackgroundColor;
     case PaletteColor.primaryGradientColor:
-      return isLightTheme
-          ? lightPrimaryGradientColor
-          : darkPrimaryGradientColor;
+      return isLight ? lightPrimaryGradientColor : darkPrimaryGradientColor;
     case PaletteColor.secondaryGradientColor:
-      return isLightTheme
-          ? lightSecondaryGradientColor
-          : darkSecondaryGradientColor;
+      return isLight ? lightSecondaryGradientColor : darkSecondaryGradientColor;
     case PaletteColor.footerColor:
-      return isLightTheme ? lightFooterColor : darkFooterColor;
+      return isLight ? lightFooterColor : darkFooterColor;
     case PaletteColor.footerTextColor:
-      return isLightTheme ? lightFooterTextColor : darkFooterTextColor;
+      return isLight ? lightFooterTextColor : darkFooterTextColor;
     case PaletteColor.buttonSplashColor:
       return buttonSplashColor;
     default:
-      return isLightTheme ? Colors.black : Colors.white;
+      return isLight ? Color(0xFF000000) : Color(0xFFFFFFFF);
   }
 }
-
-bool isLightTheme(Brightness brightness) => brightness == Brightness.light;
