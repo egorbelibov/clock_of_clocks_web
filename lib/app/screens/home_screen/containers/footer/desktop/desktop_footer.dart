@@ -62,7 +62,7 @@ class DesktopFooter extends StatelessWidget {
         CustomCursor(
           cursorStyle: CustomCursor.text,
           child: SelectableText(
-            'Project Source Code',
+            'Web Source Code',
             style: remarkedTextStyle(context, deviceType),
           ),
         ),
@@ -70,10 +70,10 @@ class DesktopFooter extends StatelessWidget {
           cursorStyle: CustomCursor.pointer,
           child: GestureDetector(
             onTap: () {
-              openWebUrl('https://github.com/egorbelibov/clock_of_clocks');
+              openWebUrl('https://github.com/egorbelibov/clock_of_clocks_web');
             },
             child: Text(
-              'github.com/egorbelibov/clock_of_clocks',
+              'github.com/egorbelibov/clock_of_clocks_web',
               style: defaultTextStyle(context, deviceType),
             ),
           ),
